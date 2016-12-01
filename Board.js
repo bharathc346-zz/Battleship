@@ -8,10 +8,10 @@ function Board(){
 		['0','0','0','0','0','0','0','0','0','0'],
 		['0','0','0','0','0','0','0','0','0','0'],
 		['0','0','0','0','0','0','0','0','0','0'],
-		['0','0','0','H','H','X','H','0','0','0'],
-		['0','0','0','0','0','0','0','0','0','0'],
-		['0','0','0','0','0','0','0','0','0','0'],
-		['0','0','0','0','0','0','0','0','0','0'],
+		['0','0','0','0','0','X','0','0','0','0'],
+		['0','X','X','H','H','H','0','0','0','0'],
+		['0','0','0','0','0','X','0','0','0','0'],
+		['0','0','0','0','0','H','0','0','0','0'],
 		['0','0','0','0','0','0','0','0','0','0']
 	];
 };
@@ -63,19 +63,28 @@ Board.prototype.attackCoords = function(x,y){
 		var up, down, left, right;
 		up = down = left = right =0;
 		for(var i =3;i>0;i--){
-			if(this._grid[x-i][y]==='H'){
-				up++;
+			if(x-i>=0){
+				if(this._grid[x-i][y]==='H'){
+					up++;
+				}
 			}
-			if(this._grid[x+i][y]==='H'){
-				down++;
+			if(x+i<=9){
+				if(this._grid[x+i][y]==='H'){
+					down++;
+				}
 			}
-			if(this._grid[x][y-i]==='H'){
-				left++;
+			if(y-i>=0){
+				if(this._grid[x][y-i]==='H'){
+					left++;
+				}
 			}
-			if(this._grid[x][y+i]==='H'){
-				right++;
+			if(y+i<=9){
+				if(this._grid[x][y+i]==='H'){
+					right++;
+				}
 			}
 		}
+		console.log('Left: '+left+' Right: '+right+' Up: '+up+' Down: '+down);
 		if(up+down===3){console.log('You sunk enemy ship');}
 		if(right+left===3){console.log('You sunk enemy ship');}
 	}
@@ -104,7 +113,7 @@ var a = new Board();
 console.log('\n');
 a.printBoard(a._grid);
 console.log('\n');
-a.attackCoords(5,5);
+a.attackCoords(6,2);
 console.log('\n');
 
 
