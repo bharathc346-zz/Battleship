@@ -112,7 +112,7 @@ Board.prototype.attackCoords = function(x,y){
 }
 
 
-Board.prototype.printBoard= function(grid){
+Board.prototype.printGrid= function(grid){
 	for(var i =0;i<10;i++){
 		var line = "";
 		for(var j=0;j<10;j++){
@@ -122,30 +122,7 @@ Board.prototype.printBoard= function(grid){
 	}
 }
 
-
-
-var a = new Board();
-a.assignRandBoatLocations(a._grid);
-console.log('\n');
-a.printBoard(a._grid);
-console.log('\n');
-a.attackCoords(6,5);
-a.attackCoords(6,6);
-a.attackCoords(6,7);
-a.attackCoords(6,8);
-a.attackCoords(6,9);
-a.attackCoords(3,8);
-a.attackCoords(4,8);
-a.attackCoords(5,8);
-a.attackCoords(7,8);
-a.attackCoords(8,8);
-a.attackCoords(9,8);
-console.log(a.numOfHits);
-console.log('\n');
-a.printBoard(a._grid);
-
-
-
+module.exports = Board;
 
 
 
