@@ -72,35 +72,30 @@ Board.prototype.attackCoords = function(x,y){
 			var shipNum = this._grid[x][y].substring(0,1);
 			var targetText = shipNum +'H';
 			if(x-i>=0){
-				if(this._grid[x-i][y]===targetText){
+				if(this._grid[x-i][y].substring(0,1)===targetText){
 					up++;
 				}
 			}
 			if(x+i<=9){
-				if(this._grid[x+i][y]===targetText){
+				if(this._grid[x+i][y].substring(0,1)===targetText){
 					down++;
 				}
 			}
 			if(y-i>=0){
-				if(this._grid[x][y-i]===targetText){
+				if(this._grid[x][y-i].substring(0,1)===targetText){
 					left++;
 				}
 			}
 			if(y+i<=9){
-				if(this._grid[x][y+i]===targetText){
+				if(this._grid[x][y+i].substring(0,1)===targetText){
 					right++;
 				}
 			}
 		}
 		//Check if enemy ship was sunk 
-		console.log('Left: '+left+' Right: '+right+' Up: '+up+' Down: '+down);
+		// console.log('Left: '+left+' Right: '+right+' Up: '+up+' Down: '+down);
 		if(up+down===3){console.log('You sunk enemy ship');}
 		if(right+left===3){console.log('You sunk enemy ship');}
-
-		//Check win
-		if(this.numOfHits=== 16){
-			console.log('You Won');
-		}
 		
 	}
 	//Miss
