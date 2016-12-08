@@ -1,5 +1,3 @@
-
-
 function Board(){
 	//Initialize 10 x 10 grid with all 0's as 0 represents water
 	 this._grid = [
@@ -14,7 +12,6 @@ function Board(){
 		['00','00','00','00','00','00','00','00','00','00'],
 		['00','00','00','00','00','00','00','00','00','00']
 	];
-	this.numOfHits = 0;
 };
 
 
@@ -55,15 +52,14 @@ Board.prototype.attackCoords = function(x,y){
 	if(x>9 || x<0 || y<0 ||y >9){
 		console.log('Invalid Coordinates');
 	}
-	// if coordinates already were attacked
+	//Check if coordinates already were attacked
 	else if(this._grid[x][y].substring(1,2)==='H'||this._grid[x][y].substring(1,2)==='M'){
 		console.log('You already attacked this coordinate');
 	}
-	// if coordinates hit a Ship
+	//Check if coordinates hit a Ship
 	else if(this._grid[x][y].substring(1,2)==='X'){
 		console.log('Hit');
 		this._grid[x][y]=this._grid[x][y].substring(0,1)+'H';
-		this.numOfHits = this.numOfHits+1;
 
 		//Increment up down left right
 		var up, down, left, right;
@@ -72,31 +68,30 @@ Board.prototype.attackCoords = function(x,y){
 			var shipNum = this._grid[x][y].substring(0,1);
 			var targetText = shipNum +'H';
 			if(x-i>=0){
-				if(this._grid[x-i][y].substring(0,1)===targetText){
+				if(this._grid[x-i][y]===targetText){
 					up++;
 				}
 			}
 			if(x+i<=9){
-				if(this._grid[x+i][y].substring(0,1)===targetText){
+				if(this._grid[x+i][y]===targetText){
 					down++;
 				}
 			}
 			if(y-i>=0){
-				if(this._grid[x][y-i].substring(0,1)===targetText){
+				if(this._grid[x][y-i]===targetText){
 					left++;
 				}
 			}
 			if(y+i<=9){
-				if(this._grid[x][y+i].substring(0,1)===targetText){
+				if(this._grid[x][y+i]===targetText){
 					right++;
 				}
 			}
 		}
 		//Check if enemy ship was sunk 
-		// console.log('Left: '+left+' Right: '+right+' Up: '+up+' Down: '+down);
+		console.log('Left: '+left+' Right: '+right+' Up: '+up+' Down: '+down);
 		if(up+down===3){console.log('You sunk enemy ship');}
 		if(right+left===3){console.log('You sunk enemy ship');}
-		
 	}
 	//Miss
 	else if(this._grid[x][y]==='00'){
@@ -119,5 +114,18 @@ Board.prototype.printGrid= function(grid){
 
 module.exports = Board;
 
+
+// var a = new Board();
+// // a.assignRandBoatLocations(a._grid);
+// console.log('\n');
+// a.printGrid(a._grid);
+// console.log('\n');
+// a.attackCoords(0,3);
+// a.attackCoords(0,4);
+// a.attackCoords(0,5);
+// a.attackCoords(0,6);
+
+// console.log('\n');
+// a.printGrid(a._grid);
 
 
