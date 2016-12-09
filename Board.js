@@ -12,6 +12,8 @@ function Board(){
 		['00','00','00','00','00','00','00','00','00','00'],
 		['00','00','00','00','00','00','00','00','00','00']
 	];
+
+	this.numOfHits =0;
 };
 
 
@@ -50,14 +52,15 @@ Board.prototype.assignRandBoatLocations=function(grid){
 Board.prototype.attackCoords = function(x,y){
 	//Check if coordinates are valid
 	if(x>9 || x<0 || y<0 ||y >9){
-		console.log('Invalid Coordinates');
+		console.log('\nInvalid Coordinates\n');
 	}
 	//Check if coordinates already were attacked
 	else if(this._grid[x][y].substring(1,2)==='H'||this._grid[x][y].substring(1,2)==='M'){
-		console.log('You already attacked this coordinate');
+		console.log('\nYou already attacked this coordinate\n');
 	}
 	//Check if coordinates hit a Ship
 	else if(this._grid[x][y].substring(1,2)==='X'){
+		this.numOfHits = this.numOfHits+1;
 		console.log('Hit');
 		this._grid[x][y]=this._grid[x][y].substring(0,1)+'H';
 
@@ -89,14 +92,14 @@ Board.prototype.attackCoords = function(x,y){
 			}
 		}
 		//Check if enemy ship was sunk 
-		console.log('Left: '+left+' Right: '+right+' Up: '+up+' Down: '+down);
+		//console.log('Left: '+left+' Right: '+right+' Up: '+up+' Down: '+down);
 		if(up+down===3){console.log('You sunk enemy ship');}
 		if(right+left===3){console.log('You sunk enemy ship');}
 	}
 	//Miss
 	else if(this._grid[x][y]==='00'){
 		this._grid[x][y]=this._grid[x][y].substring(0,1)+'M';
-		console.log('Miss');
+		console.log('\nMiss\n');
 	}
 
 }

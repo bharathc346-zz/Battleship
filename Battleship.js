@@ -15,13 +15,8 @@ var playerTwoBoard = playerTwo.board;
 var playerTwoGrid = playerTwoBoard._grid;
 
 playerOneBoard.assignRandBoatLocations(playerOneGrid);
-console.log('\n');
-console.log('Player One Grid:  \n')
-playerOneBoard.printGrid(playerOneGrid);
-console.log('\n Player Two Grid: ')
 playerTwoBoard.assignRandBoatLocations(playerTwoGrid);
-playerOneBoard.printGrid(playerTwoGrid);
-console.log('\n');
+
 
 var loopControl = 0;
 var x = 0;
@@ -38,9 +33,6 @@ while(loopControl===0){
 		console.log('Player One Wins the Game !!!!!!!!!');
 		break loop;
 	}
-	console.log('Player Two Grid:  \n \n')
-	playerTwoBoard.printGrid(playerTwoGrid);
-	console.log('\n');
 
 	//Player Two turn
 	var pTwoAtckCoordinate = readlineSync.question('Player Two: What coordinate would you like to attack (enter x,y)? ').split(',');
@@ -51,7 +43,5 @@ while(loopControl===0){
 		console.log('Player Two Wins the Game !!!!!!!!!');
 		break loop;
 	}
-	console.log('Player One Grid:  \n \n')
-	playerOneBoard.printGrid(playerOneGrid);
 	console.log('\n');
 }
